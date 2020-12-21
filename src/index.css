@@ -115,18 +115,29 @@ a:hover {
 }
 .current-list {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  border: 1px solid var(--accent-color);
+  border-radius: 15px;
+  padding: 1em;
+  margin: 1em;
+}
+.wrap {
+  display: flex;
 }
 /* Card */
 
 .card {
   background-color: var(--wavy-color);
   padding: 1em;
-  width: 25%;
+  text-align: center;
   border: 1px solid var(--accent-color);
   border-radius: 15px;
+  margin: 1em;
 }
 
-.current h1 {
+.current h1,
+h2 {
   margin: 0;
+  text-align: center;
 }

@@ -11,7 +11,6 @@ import Historic from "./Historic";
 import Current from "./Current";
 
 function App() {
-  
   return (
     <Router>
       <NavBar></NavBar>
@@ -25,6 +24,9 @@ function App() {
         </Route>
         <Route path="/search">
           <h1>search page wip</h1>
+        </Route>
+        <Route path="/">
+          <h1>Get informed COVID is real</h1>
         </Route>
       </Switch>
     </Router>
