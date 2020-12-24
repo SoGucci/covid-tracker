@@ -1,44 +1,67 @@
 import "../index.css";
-import { Chart } from "react-charts";
-import React from "react";
-function GlobalChart() {
-  const data = React.useMemo(
-    () => [
-      {
-        label: "Series 1",
-        data: [
-          [0, 1],
-          [1, 2],
-          [2, 4],
-          [3, 2],
-          [4, 7],
+
+import React, { useEffect } from "react";
+import Chart from "chart.js";
+import moment from "moment";
+function GlobalChart(props) {
+    //console.log(props.positive);
+  const dataPositive = [];
+  useEffect(() => {
+    for (let i = 0; i < props.data.length; i++) {
+      dataPositive.push({
+        t: new moment(props.date[i] + "").format(),
+        y: props.data[i] / 10000,
+      });
+    }
+    console.log(dataPositive);
+    var ctx = document.getElementById("myChart").getContext("2d");
+    new Chart(ctx, {
+      // The type of chart we want to create
+      type: "line",
+
+      // The data for our dataset
+      data: {
+        datasets: [
+          {
+            label: props.label,
+            backgroundColor: "rgb(255, 99, 132)",
+            borderColor: "rgb(255, 99, 132)",
+            fill: false,
+            data: dataPositive,
+          },
         ],
       },
-      {
-        label: "Series 2",
-        data: [
-          [0, 3],
-          [1, 1],
-          [2, 5],
-          [3, 6],
-          [4, 4],
-        ],
+
+      // Configuration options go here
+      options: {
+        responsive: true,
+        scales: {
+          xAxes: [
+            {
+              type: "time",
+              distribution: "series",
+              time: {
+                unit: "month",
+              },
+            },
+          ],
+          yAxes: [
+            {
+              ticks: {
+                max: 30,
+                min: 0,
+                stepSize: 1,
+              },
+            },
+          ],
+          bounds: "data",
+        },
       },
-    ],
-    []
-  );
-
-  const axes = React.useMemo(
-    () => [
-      { primary: true, type: "linear", position: "bottom" },
-      { type: "linear", position: "left" },
-    ],
-    []
-  );
-
+    });
+  });
   return (
     <div className="graph">
-      <Chart data={data} axes={axes} tooltip dark />
+      <canvas id="myChart"></canvas>
     </div>
   );
 }

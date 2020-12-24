@@ -78,9 +78,9 @@ a:hover {
   color: white;
   text-align: center;
   align-content: center;
-  width: 50%;
+  width: 90%;
   height: 50%;
-  margin: auto;
+  margin: 0 auto;
 
   padding: 2em;
   padding-top: 0.5em;
@@ -92,7 +92,8 @@ a:hover {
   margin: auto;
   border-radius: var(--radius);
   background-color: var(--wavy-color);
-  height: 400px;
+
+  width: 100%;
 }
 
 @media (max-width: 500px) {
@@ -103,11 +104,11 @@ a:hover {
 
 /* Current Page */
 .current {
-  margin: 0 11em;
+  margin: 0 auto;
   padding: 2em 2em;
-  background-color: var(--wavy-color);
+  /* background-color: var(--wavy-color);
   border-radius: var(--radius);
-  border: 1px solid var(--accent-color);
+  border: 1px solid var(--accent-color); */
 }
 
 .current p {
@@ -116,15 +117,37 @@ a:hover {
 .current-list {
   display: flex;
   flex-direction: column;
+  flex: 1;
   justify-content: space-around;
   border: 1px solid var(--accent-color);
   border-radius: 15px;
   padding: 1em;
   margin: 1em;
 }
+@media (max-width: 500px) {
+  .current {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .card {
+    margin: 0.5em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .sticky-icky {
+    position: sticky;
+    top: 5px;
+  }
+}
 .wrap {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 200px;
 }
+
 /* Card */
 
 .card {
@@ -138,6 +161,7 @@ a:hover {
 
 .current h1,
 h2 {
-  margin: 0;
+  margin: 0 auto;
+  width: 300px;
   text-align: center;
 }

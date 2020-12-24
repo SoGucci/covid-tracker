@@ -12,9 +12,17 @@ function Current() {
   const [currentUSValues, setCurrentUSValues] = useState({
     death: "",
     deathIncrease: "",
+    recovered: "",
     negative: "",
     positive: "",
     pending: "",
+    hospitalizedCumulative: "",
+    hospitalizedCurrently: "",
+    hospitalizedIncrease: "",
+    totalTestResults: "",
+    positiveIncrease: "",
+    negativeIncrease: "",
+    totalTestResultsIncrease: "",
   });
 
   useEffect(() => {
@@ -33,18 +41,19 @@ function Current() {
 
   return (
     <div className="current">
-      <h1>Current Statistics</h1>
+      <h1 className="sticky-icky">Current Statistics</h1>
       <p>Last page refresh: {new moment().format("dddd, MMMM Do YYYY")} </p>
       <p>
         Last data refresh:{" "}
         {new moment(currentUSValues.date + "").format("dddd, MMMM Do YYYY")}
       </p>
+      <p>Pending test results: {currentUSValues.pending.toLocaleString()}</p>
       <div className="wrap">
         <div className="current-list">
-          <h2>Cummulative</h2>
+          <h2>All Time</h2>
           <Card
-            message="Pending: "
-            data={currentUSValues.pending.toLocaleString()}
+            message="Tests: "
+            data={currentUSValues.totalTestResults.toLocaleString()}
           ></Card>
           <Card
             message="Positive: "
@@ -54,26 +63,66 @@ function Current() {
             message="Negative: "
             data={currentUSValues.negative.toLocaleString()}
           ></Card>
+          <Card
+            message="Dead: "
+            data={currentUSValues.death.toLocaleString()}
+          ></Card>
         </div>
 
         <div className="current-list">
+          <h2>Today</h2>
+          <Card
+            message="Tests: "
+            data={currentUSValues.totalTestResultsIncrease.toLocaleString()}
+          ></Card>
+          <Card
+            message="Positive: "
+            data={currentUSValues.positiveIncrease.toLocaleString()}
+          ></Card>
+          <Card
+            message="Negative: "
+            data={currentUSValues.negativeIncrease.toLocaleString()}
+          ></Card>
+          <Card
+            message="Dead: "
+            data={currentUSValues.deathIncrease.toLocaleString()}
+          ></Card>
+        </div>
+        {/* <div className="current-list">
           <h2>Hospitalized</h2>
           <Card
-            message="Cumulative hospitalized: "
-            data={currentUSValues.hospitalizedCumulative}
+            message="All time: "
+            data={currentUSValues.hospitalizedCumulative.toLocaleString()}
           ></Card>
           <Card
-            message="Currently hospitalized: "
-            data={currentUSValues.hospitalizedCurrently}
+            message="Currently: "
+            data={currentUSValues.hospitalizedCurrently.toLocaleString()}
           ></Card>
           <Card
-            message="New total hospitalizations: "
-            data={currentUSValues.hospitalizedIncrease}
+            message="Today: "
+            data={currentUSValues.hospitalizedIncrease.toLocaleString()}
           ></Card>
         </div>
 
+        <div className="current-list">
+          <h2>Outcome</h2>
+          <Card
+            message="Dead: "
+            data={currentUSValues.death.toLocaleString()}
+          ></Card>
+          <Card
+            message="Currently: "
+            data={currentUSValues.hospitalizedCurrently.toLocaleString()}
+          ></Card>
+          <Card
+            message="recovered: "
+            data={currentUSValues.recovered.toLocaleString()}
+          ></Card>
+        </div> */}
+
         {/* <GlobalChart></GlobalChart> */}
       </div>
+      <p>Recovered: {currentUSValues.recovered.toLocaleString()}</p>
     </div>
   );
 }
